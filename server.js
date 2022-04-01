@@ -1,7 +1,16 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-require('dotenv').config()
+
+// Import config based on 'CURRENT' environment variable
+let CURRENT = process.env.CURRENT || 'dev';
+let configPath = '';
+if(CURRENT === 'dev'){
+  configPath = './config/dev.env';
+}else{
+  configPath = './config/prod.env';
+}
+require('dotenv').config({path: configPath});
 
 app.use(cors())
 app.use(express.static('public'))
