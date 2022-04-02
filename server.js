@@ -3,6 +3,9 @@ const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser');
 
+// Services
+const userService = require('./services/userService');
+
 // Import config based on 'CURRENT' environment variable
 let CURRENT = process.env.CURRENT || 'dev';
 let configPath = '';
@@ -27,8 +30,9 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
-
-
+// User related endpoints
+app.post('/api/users', userService.insertUser);
+app.get('/api/users', userService.getAllUsers);
 
 
 const listener = app.listen(process.env.PORT || 3000, () => {
