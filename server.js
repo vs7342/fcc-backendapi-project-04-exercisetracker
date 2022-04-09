@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 // Services
 const userService = require('./services/userService');
+const exerciseService = require('./services/exerciseService');
 
 // Import config based on 'CURRENT' environment variable
 let CURRENT = process.env.CURRENT || 'dev';
@@ -34,6 +35,8 @@ app.get('/', (req, res) => {
 app.post('/api/users', userService.insertUser);
 app.get('/api/users', userService.getAllUsers);
 
+// Exercise related endpoints
+app.post('/api/users/:_id/exercises', exerciseService.logExercise);
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
