@@ -37,6 +37,7 @@ app.get('/api/users', userService.getAllUsers);
 
 // Exercise related endpoints
 app.post('/api/users/:_id/exercises', exerciseService.logExercise);
+app.get('/api/users/:_id/logs', exerciseService.getExerciseLog);
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
